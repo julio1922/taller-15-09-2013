@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Tareas</title>
+</head>
+<body>
+    <h1>Lista de Tareas</h1>
+    <ul>
+        {% for task in tasks %}
+        <li>
+            {{ task.title }}
+            {% if task.completed %}
+                <span style="color: green;">(Completada)</span>
+            {% else %}
+                <span style="color: red;">(Pendiente)</span>
+            {% endif %}
+            <a href="/complete/{{ task.id }}">Marcar como Completada</a>
+            <a href="/delete/{{ task.id }}">Eliminar</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Agregar Nueva Tarea</h2>
+    <form method="POST" action="/add">
+        <label for="title">Título de la Tarea:</label>
+        <input type="text" id="title" name="title" required>
+        <input type="submit" value="Agregar">
+    </form>
+</body>
+</html>
